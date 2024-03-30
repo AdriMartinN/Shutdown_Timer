@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="Temporizador:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Temporizador_jar</output-path>
-    <root id="archive" name="Temporizador.jar">
-      <element id="module-output" name="Temporizador" />
-    </root>
-  </artifact>
-</component>
