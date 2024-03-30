@@ -13,7 +13,6 @@
         <option value="localCanBeFinalExceptImplicit" />
         <option value="unqualifiedFieldAccess" />
         <option value="unqualifiedMethodAccess" />
-        <option value="unnecessaryThis" />
         <option value="finalPrivateMethod" />
         <option value="unnecessaryFinalOnLocalVariableOrParameter" />
         <option value="unnecessarySemicolon" />

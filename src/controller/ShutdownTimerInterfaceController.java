@@ -8,25 +8,35 @@ import java.awt.event.KeyEvent;
 
 public class ShutdownTimerInterfaceController extends ShutdownTimerInterface {
 
-    ShutdownTimerService shutdownTimerService = new ShutdownTimerService();
+    private final ShutdownTimerService shutdownTimerService;
 
     public ShutdownTimerInterfaceController() {
         super();
+        this.shutdownTimerService = new ShutdownTimerService();
+        this.shutdownTimerService.updateRemainingTime(this.remainingTimeLabel);
+        this.shutdownTimerService.startTimer(this.remainingTimeLabel);
+        this.setupButtonActions();
+        this.setupEnterKeyListener();
+    }
 
-        shutdownTimerService.updateRemainingTime(remainingTimeLabel);
+    private void setupButtonActions() {
+        this.addTimeButton.addActionListener(e -> this.shutdownTimerService.addTime(this.remainingTimeLabel,
+                this.hoursField,
+                this.minutesField, this.secondsField));
 
-        shutdownTimerService.startTimer(remainingTimeLabel);
+        this.stopButton.addActionListener(e -> this.shutdownTimerService.stopTimer(this.remainingTimeLabel));
+    }
 
-        addTimeButton.addActionListener(e -> shutdownTimerService.addTime(remainingTimeLabel, hoursField,
-                minutesField, secondsField));
-
-        stopButton.addActionListener(e -> shutdownTimerService.stopTimer(remainingTimeLabel));
-
-        minutesField.addKeyListener(new KeyAdapter() {
+    private void setupEnterKeyListener() {
+        this.minutesField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    shutdownTimerService.addTime(remainingTimeLabel, hoursField, minutesField, secondsField);
+                    ShutdownTimerInterfaceController.this.shutdownTimerService.addTime(
+                            ShutdownTimerInterfaceController.this.remainingTimeLabel,
+                            ShutdownTimerInterfaceController.this.hoursField,
+                            ShutdownTimerInterfaceController.this.minutesField,
+                            ShutdownTimerInterfaceController.this.secondsField);
                 }
             }
         });
