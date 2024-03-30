@@ -66,7 +66,6 @@ public class CountdownDialog extends JDialog {
         if (this.countdownSeconds <= 0) {
             this.timer.stop();
             this.dispose();
-            System.out.println("Time's up. Shutting down the computer...");
             try {
                 Runtime.getRuntime().exec(command);
             } catch (IOException ex) {
