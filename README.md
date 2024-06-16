@@ -1,7 +1,4 @@
 # Shutdown Timer Application
-
-## Overview
-
 Shutdown Timer is a Java application designed to schedule the automatic shutdown of your computer.
 
 ## Features
