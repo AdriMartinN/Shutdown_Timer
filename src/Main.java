@@ -1,17 +1,17 @@
 import com.formdev.flatlaf.FlatDarkLaf;
-import controller.ShutdownTimerInterfaceController;
+import controller.timer.ShutdownTimerUIController;
 
 import javax.swing.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         SwingUtilities.invokeLater(() -> {
             try {
                 UIManager.setLookAndFeel(new FlatDarkLaf());
-            } catch (UnsupportedLookAndFeelException e) {
+            } catch (final UnsupportedLookAndFeelException e) {
                 e.printStackTrace();
             }
-            new ShutdownTimerInterfaceController();
+            new ShutdownTimerUIController();
         });
     }
 }

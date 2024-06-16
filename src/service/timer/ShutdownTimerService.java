@@ -1,4 +1,6 @@
-package service;
+package service.timer;
+
+import service.ShutdownManager;
 
 import javax.swing.*;
 
@@ -14,8 +16,8 @@ public class ShutdownTimerService {
         this.shutdownManager = new ShutdownManager();
     }
 
-    public void startTimer(JLabel remainingTimeLabel) {
-        Timer timer = new Timer(1000, e -> {
+    public void startTimer(final JLabel remainingTimeLabel) {
+        final Timer timer = new Timer(1000, e -> {
             if (this.remainingTimeSeconds > 0 && this.timerRunning) {
                 this.remainingTimeSeconds--;
                 this.updateRemainingTime(remainingTimeLabel);
@@ -27,19 +29,19 @@ public class ShutdownTimerService {
         timer.start();
     }
 
-    public void updateRemainingTime(JLabel remainingTimeLabel) {
-        int hours = this.remainingTimeSeconds / 3600;
-        int minutes = (this.remainingTimeSeconds % 3600) / 60;
-        int seconds = this.remainingTimeSeconds % 60;
+    public void updateRemainingTime(final JLabel remainingTimeLabel) {
+        final int hours = this.remainingTimeSeconds / 3600;
+        final int minutes = (this.remainingTimeSeconds % 3600) / 60;
+        final int seconds = this.remainingTimeSeconds % 60;
         remainingTimeLabel.setText(String.format("Remaining time: %02d:%02d:%02d", hours, minutes, seconds));
     }
 
-    public void addTime(JLabel remainingTimeLabel, JTextField hoursField, JTextField minutesField,
-                        JTextField secondsField) {
+    public void addTime(final JLabel remainingTimeLabel, final JTextField hoursField, final JTextField minutesField,
+                        final JTextField secondsField) {
         try {
-            long hours = this.parseLong(hoursField.getText());
-            long minutes = this.parseLong(minutesField.getText());
-            long seconds = this.parseLong(secondsField.getText());
+            final long hours = this.parseLong(hoursField.getText());
+            final long minutes = this.parseLong(minutesField.getText());
+            final long seconds = this.parseLong(secondsField.getText());
 
             if (hours < 0 || hours >= Long.MAX_VALUE) {
                 JOptionPane.showMessageDialog(null, "Please enter valid hours.", "Error",
@@ -54,26 +56,26 @@ public class ShutdownTimerService {
                 return;
             }
 
-            long totalSeconds = hours * 3600 + minutes * 60 + seconds;
+            final long totalSeconds = hours * 3600 + minutes * 60 + seconds;
             this.remainingTimeSeconds += (int) totalSeconds;
             this.updateRemainingTime(remainingTimeLabel);
             hoursField.setText("");
             minutesField.setText("");
             secondsField.setText("");
             this.timerRunning = true;
-        } catch (NumberFormatException e) {
+        } catch (final NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Please enter valid numbers for hours, minutes, and seconds.", "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public void stopTimer(JLabel remainingTimeLabel) {
+    public void stopTimer(final JLabel remainingTimeLabel) {
         this.remainingTimeSeconds = 0;
         this.timerRunning = false;
         this.updateRemainingTime(remainingTimeLabel);
     }
 
-    private long parseLong(String text) throws NumberFormatException {
+    private long parseLong(final String text) throws NumberFormatException {
         return text.isEmpty() ? 0 : Long.parseLong(text);
     }
 }

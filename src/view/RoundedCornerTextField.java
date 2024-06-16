@@ -13,15 +13,16 @@ public class RoundedCornerTextField extends JTextField {
     Frame frame;
     private Shape shape;
 
-    public RoundedCornerTextField(int size, Frame frame) {
+    public RoundedCornerTextField(final int size, final Frame frame) {
         super(size);
         this.frame = frame;
         this.setOpaque(false);
 
         ((AbstractDocument) this.getDocument()).setDocumentFilter(new DocumentFilter() {
             @Override
-            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-                String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
+            public void replace(final FilterBypass fb, final int offset, final int length, final String text,
+                                final AttributeSet attrs) throws BadLocationException {
+                final String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
                 if (newText.matches("\\d*")) {
                     super.replace(fb, offset, length, text, attrs);
                 }
@@ -30,8 +31,8 @@ public class RoundedCornerTextField extends JTextField {
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g.create();
+    protected void paintComponent(final Graphics g) {
+        final Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         if (!this.isOpaque()) {
             g2.setColor(this.frame.getBackground());
@@ -42,8 +43,8 @@ public class RoundedCornerTextField extends JTextField {
     }
 
     @Override
-    protected void paintBorder(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g.create();
+    protected void paintBorder(final Graphics g) {
+        final Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(new Color(122, 121, 124));
         g2.drawRoundRect(0, 0, this.getWidth() - 1, this.getHeight() - 1, 10, 10);
@@ -51,9 +52,9 @@ public class RoundedCornerTextField extends JTextField {
     }
 
     @Override
-    public boolean contains(int x, int y) {
+    public boolean contains(final int x, final int y) {
         if (this.shape == null || !this.shape.getBounds().equals(this.getBounds())) {
-            this.shape = new RoundRectangle2D.Float(0, 0, this.getWidth() - 1, this.getHeight() - 1, 10, 10); //
+            this.shape = new RoundRectangle2D.Float(0, 0, this.getWidth() - 1, this.getHeight() - 1, 10, 10);
         }
         return this.shape.contains(x, y);
     }

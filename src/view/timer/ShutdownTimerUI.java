@@ -1,20 +1,22 @@
-package view;
+package view.timer;
 
+import view.RoundedCornerTextField;
 import view.font.SoDoSansFont;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ShutdownTimerInterface extends JFrame {
+public class ShutdownTimerUI extends JFrame {
+
+    SoDoSansFont soDoSansRegularFont = new SoDoSansFont();
     public JLabel remainingTimeLabel;
     public JTextField hoursField;
     public JTextField minutesField;
     public JTextField secondsField;
     public JButton addTimeButton = new JButton("Add Time");
     public JButton stopButton = new JButton("Stop Timer");
-    SoDoSansFont soDoSansRegularFont = new SoDoSansFont();
 
-    public ShutdownTimerInterface() {
+    public ShutdownTimerUI() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
 
@@ -26,25 +28,25 @@ public class ShutdownTimerInterface extends JFrame {
         this.minutesField = new RoundedCornerTextField(5, this);
         this.secondsField = new RoundedCornerTextField(5, this);
 
-        JPanel labelPanel = new JPanel(new GridLayout(1, 3, 5, 5));
+        final JPanel labelPanel = new JPanel(new GridLayout(1, 3, 5, 5));
         labelPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         labelPanel.add(this.createStyledLabel("Hours:"));
         labelPanel.add(this.createStyledLabel("Minutes:"));
         labelPanel.add(this.createStyledLabel("Seconds:"));
 
-        JPanel textFieldPanel = new JPanel(new GridLayout(1, 3, 5, 5));
+        final JPanel textFieldPanel = new JPanel(new GridLayout(1, 3, 5, 5));
         textFieldPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
         textFieldPanel.add(this.hoursField);
         textFieldPanel.add(this.minutesField);
         textFieldPanel.add(this.secondsField);
 
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        final JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         buttonPanel.add(this.addTimeButton);
         buttonPanel.add(this.stopButton);
 
-        JPanel contentPanel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        final JPanel contentPanel = new JPanel(new GridBagLayout());
+        final GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1;
@@ -66,15 +68,14 @@ public class ShutdownTimerInterface extends JFrame {
         this.setVisible(true);
     }
 
-    private JLabel createStyledLabel(String text) {
-        JLabel label = new JLabel(text);
+    private JLabel createStyledLabel(final String text) {
+        final JLabel label = new JLabel(text);
         label.setFont(this.soDoSansRegularFont.soDoSansRegularFont());
         return label;
     }
 
     private void styleComponents() {
-        Font font = this.soDoSansRegularFont.soDoSansRegularFont();
-
+        final Font font = this.soDoSansRegularFont.soDoSansRegularFont();
         this.remainingTimeLabel.setFont(font);
         this.addTimeButton.setFont(font);
         this.stopButton.setFont(font);
@@ -83,11 +84,11 @@ public class ShutdownTimerInterface extends JFrame {
         this.secondsField.setFont(font);
     }
 
-    private void centerFrameOnScreen(JFrame frame) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension frameSize = frame.getSize();
-        int x = (screenSize.width - frameSize.width) / 2;
-        int y = (screenSize.height - frameSize.height) / 2;
+    private void centerFrameOnScreen(final JFrame frame) {
+        final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        final Dimension frameSize = frame.getSize();
+        final int x = (screenSize.width - frameSize.width) / 2;
+        final int y = (screenSize.height - frameSize.height) / 2;
         frame.setLocation(x, y);
     }
 }

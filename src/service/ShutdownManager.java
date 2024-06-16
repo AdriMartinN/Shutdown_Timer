@@ -1,13 +1,15 @@
 package service;
 
+import controller.dialog.CountdownDialogUIController;
+
 import javax.swing.*;
 
 public class ShutdownManager {
 
     public void shutdownComputer() {
-        String shutdownCommand = this.getShutdownCommand();
+        final String shutdownCommand = this.getShutdownCommand();
         if (shutdownCommand != null) {
-            new CountdownDialog(20, shutdownCommand).setVisible(true);
+            new CountdownDialogUIController(20, shutdownCommand).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Shutdown command not supported for this operating system.", "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -15,7 +17,7 @@ public class ShutdownManager {
     }
 
     public String getShutdownCommand() {
-        String osName = System.getProperty("os.name").toLowerCase();
+        final String osName = System.getProperty("os.name").toLowerCase();
         if (osName.contains("win")) {
             return "shutdown -s -t 1";
         } else if (osName.contains("mac")) {

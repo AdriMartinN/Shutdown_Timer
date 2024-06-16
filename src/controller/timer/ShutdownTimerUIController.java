@@ -1,16 +1,16 @@
-package controller;
+package controller.timer;
 
-import service.ShutdownTimerService;
-import view.ShutdownTimerInterface;
+import service.timer.ShutdownTimerService;
+import view.timer.ShutdownTimerUI;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class ShutdownTimerInterfaceController extends ShutdownTimerInterface {
+public class ShutdownTimerUIController extends ShutdownTimerUI {
 
     private final ShutdownTimerService shutdownTimerService;
 
-    public ShutdownTimerInterfaceController() {
+    public ShutdownTimerUIController() {
         super();
         this.shutdownTimerService = new ShutdownTimerService();
         this.shutdownTimerService.updateRemainingTime(this.remainingTimeLabel);
@@ -30,13 +30,13 @@ public class ShutdownTimerInterfaceController extends ShutdownTimerInterface {
     private void setupEnterKeyListener() {
         this.minutesField.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e) {
+            public void keyPressed(final KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    ShutdownTimerInterfaceController.this.shutdownTimerService.addTime(
-                            ShutdownTimerInterfaceController.this.remainingTimeLabel,
-                            ShutdownTimerInterfaceController.this.hoursField,
-                            ShutdownTimerInterfaceController.this.minutesField,
-                            ShutdownTimerInterfaceController.this.secondsField);
+                    ShutdownTimerUIController.this.shutdownTimerService.addTime(
+                            ShutdownTimerUIController.this.remainingTimeLabel,
+                            ShutdownTimerUIController.this.hoursField,
+                            ShutdownTimerUIController.this.minutesField,
+                            ShutdownTimerUIController.this.secondsField);
                 }
             }
         });
