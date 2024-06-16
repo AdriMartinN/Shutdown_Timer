@@ -14,9 +14,9 @@ time to the timer and another to stop the timer.
 
 ![Captura de pantalla 2024-06-16 053222](https://github.com/AdriMartinN/Shutdown_Timer/assets/129053227/3fd1b0f5-3df6-4903-a585-4f0c4ea19dcc)
 
-<div style="text-align: center;">
+<p align="center">
     <img src="https://github.com/AdriMartinN/Shutdown_Timer/assets/129053227/3fd1b0f5-3df6-4903-a585-4f0c4ea19dcc" alt="Captura de pantalla 2024-06-16 053222">
-</div>
+</p>
 
 ## Prerequisites
 
