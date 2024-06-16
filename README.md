@@ -14,7 +14,8 @@ Shutdown Timer is a Java application designed to schedule the automatic shutdown
 
 An intuitive interface with 3 text fields for entering hours, minutes, and seconds, along with 2 buttons: one to add
 time to the timer and another to stop the timer.
-![Captura de pantalla 2024-06-16 053222](https://github.com/AdriMartinN/Shutdown_Timer/assets/129053227/3fd1b0f5-3df6-4903-a585-4f0c4ea19dcc)">
+
+![Captura de pantalla 2024-06-16 053222](https://github.com/AdriMartinN/Shutdown_Timer/assets/129053227/3fd1b0f5-3df6-4903-a585-4f0c4ea19dcc)
 
 ## Prerequisites
 
